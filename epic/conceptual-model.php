@@ -19,11 +19,11 @@
 			<ul>
 				<li>bookId (Primary Key)</li>
 				<li>bookGenreId (Foreign Key)</li>
-				<li>bookTitle</li>
 				<li>bookAuthor</li>
 				<li>bookDescription</li>
-				<li>bookPublishDate</li>
 				<li>bookPages</li>
+				<li>bookPublishDate</li>
+				<li>bookTitle</li>
 			</ul>
 			<h4>Bookgenres</h4>
 			<ul>

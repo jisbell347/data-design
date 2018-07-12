@@ -54,5 +54,10 @@
 						</ul>
 				</ul>
 		</div>
+		<div>
+			<button class="btn">
+				<a href="./index.php">Back to Home</a>
+			</button>
+		</div>
 	</body>
 </html>

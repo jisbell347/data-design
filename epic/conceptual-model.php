@@ -30,7 +30,6 @@
 				<li>bookgenresId (Primary Key)</li>
 				<li>bookgenreBookId (Foreign Key)</li>
 				<li>bookgenresGenreId (Foreign Key)</li>
-				<li>bookgenreUsers</li>
 			</ul>
 		</div>
 		<div>

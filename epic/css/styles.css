@@ -31,3 +31,17 @@ a {
 	margin-right: 5px;
 	text-transform: uppercase;
 }
+
+.btn {
+	background-color: darkcyan;
+	border-radius: 50%;
+	border: none;
+	padding: 10px
+}
+
+.meme {
+	display: inline-block;
+	position: fixed;
+	top: 25%;
+	left: 34%;
+}

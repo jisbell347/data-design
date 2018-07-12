@@ -20,7 +20,7 @@
 		</div>
 		<div>
 			<h2>Attitude</h2>
-			<p>Rebecca is a stay-at-home mom who enjoys reading on her downtime. She loves to read but often does not know which books to consider when choosing a book. She is open to suggestions and recieving help in choosing.</p>
+			<p>Rebecca is a stay-at-home mom who enjoys reading on her downtime. She loves to read but often does not know which books to consider when choosing a book. She is open to suggestions and recieving help in choosing. She would also like to be able to find good recommendations for children's books since her kids have just started reading</p>
 		</div>
 		<div>
 			<h2>Needs</h2>
@@ -29,6 +29,24 @@
 				<li>Wants to be able to see books similar to her intrests</li>
 				<li>Wants to be able to read and leave comments on books</li>
 			</ul>
+		</div>
+		<div>
+			<h2>Frustrations</h2>
+			<ul>
+				<li>Does not want to browse through multiple pages to find the book she is looking for</li>
+				<li>Does not want to view books unrelated to the genre she likes</li>
+			</ul>
+		</div>
+		<div>
+			<h2>Technology</h2>
+				<ul>
+					<li><span class="bold">Comfort level:</span>Medium.</li>
+						<ul>
+						<li>She feels somewhat comfortable using websites but is prone to confusion if there are too many pages to click through</li>
+						</ul>
+					<li></li>
+					<li></li>
+				</ul>
 		</div>
 	</body>
 </html>

@@ -3,22 +3,24 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Use Case</title>
+		<link rel="stylesheet" type="text/css" href="./css/styles.css"/>
 	</head>
 	<body>
 		<div>
 			<h1>Use Case</h1>
-			<p>Rebecca needs to find similar books</p>
+			<h3>User Story</h3>
+			<p>Rebecca needs to find books in her favorite genres that are similar to ones she has already read</p>
+			<hr />
+			<h3>Interaction Flow</h3>
 			<ul>
+				<li>Rebecca enters the URL for goodreads.com into the browser</li>
+				<li>Server directs Rebecca to the goodreads.com site</li>
 				<li>Rebecca clicks on the browse tab located on the navigation bar.</li>
-				<li>Server causes the navigation to dropdown and reveal hidden list elements</li>
+				<li>The site causes the navigation to dropdown and reveal hidden list elements including a list of genres</li>
 				<li>Rebecca clicks on a genre she is interested in</li>
-				<li>Server displays a list of books related to her selection</li>
+				<li>The site displays a list of books related to the genre she selected</li>
 				<li>Rebecca scrolls through the list of displayed books and clicks on a book she likes</li>
-				<li>Server opens the book details in a new page</li>
-				<li>Rebecca clicks on the "Want to read button"</li>
-				<li>Server displays a list of options for her to choose</li>
-				<li>Rebecca clicks on the choice: "Add to shelf"</li>
-				<li>Server adds the book to Rebecca's list of books</li>
+				<li>The site opens the book details in a new page</li>
 			</ul>
 		</div>
 		<div>

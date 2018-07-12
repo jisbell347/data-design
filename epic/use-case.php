@@ -21,6 +21,7 @@
 				<li>The site displays a list of books related to the genre she selected</li>
 				<li>Rebecca scrolls through the list of displayed books and clicks on a book she likes</li>
 				<li>The site opens the book details in a new page</li>
+				<li>Rebecca is able to view ratings of the book by others about the book and rate it herself</li>
 			</ul>
 		</div>
 		<div>

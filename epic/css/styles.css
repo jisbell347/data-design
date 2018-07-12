@@ -20,6 +20,13 @@ a {
 	text-decoration: none;
 }
 
+/*Style for adjusting position of image*/
 .pic {
 	display: inline-block;
+}
+
+/*Bolds text and adds a slight margin between elements*/
+.bold {
+	font-weight: bold;
+	margin-right: 5px;
 }

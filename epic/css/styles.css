@@ -20,3 +20,6 @@ a {
 	text-decoration: none;
 }
 
+.pic {
+	display: inline-block;
+}

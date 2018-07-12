@@ -25,7 +25,6 @@
 
 a {
 	color: ghostwhite;
-	list-style: none;
 	text-decoration: none;
 }
 
@@ -43,7 +42,7 @@ a {
 
 /*Sets background color and border style of button element*/
 .btn {
-	background-color: darkcyan;
+	background-color: #141d19;
 	border-radius: 50%;
 	border: none;
 	padding: 10px;

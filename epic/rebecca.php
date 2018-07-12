@@ -27,14 +27,13 @@
 			<ul>
 				<li>Wants to be able to select books by genre</li>
 				<li>Wants to be able to see books similar to her intrests</li>
-				<li>Wants to be able to read and leave comments on books</li>
 			</ul>
 		</div>
 		<div>
 			<h2>Frustrations</h2>
 			<ul>
 				<li>Does not want to browse through multiple pages to find the book she is looking for</li>
-				<li>Does not want to view books unrelated to the genre she likes</li>
+				<li>Does not want to view books unrelated to the genre(s) she likes</li>
 			</ul>
 		</div>
 		<div>

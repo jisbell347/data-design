@@ -15,7 +15,9 @@
 			<ul>
 				<li>Rebecca enters the URL for goodreads.com into the browser</li>
 				<li>Server directs Rebecca to the goodreads.com site</li>
-				<li>Rebecca clicks on the browse tab located on the navigation bar.</li>
+				<li>Rebecca logs in to her account</li>
+				<li>Server verifies Rebecca's credentials and logs her into the site</li>
+				<li>Rebecca clicks on the browse tab located on the navigation bar</li>
 				<li>The site causes the navigation to dropdown and reveal hidden list elements including a list of genres</li>
 				<li>Rebecca clicks on a genre she is interested in</li>
 				<li>The site displays a list of books related to the genre she selected</li>

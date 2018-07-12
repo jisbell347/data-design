@@ -40,6 +40,10 @@
 			</ul>
 		</div>
 		<div>
+			<h1>ERD</h1>
+			<img src="erd.png" alt="Picture of ERD Diagram"/>
+		</div>
+		<div>
 			<button class="btn">
 				<a href="./index.php">Back to Home</a>
 			</button>

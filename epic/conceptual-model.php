@@ -36,6 +36,7 @@
 			<h4>Rates</h4>
 			<ul>
 				<li>ratesBookId (Foreign Key)</li>
+				<li>ratesProfileId (Foreign Key)</li>
 				<li>ratesNumber</li>
 				<li>ratesDetails</li>
 				<li>ratesAverage</li>

@@ -1,0 +1,22 @@
+/*Used to style navigation bar*/
+.nav {
+	position: absolute;
+	width: 100%;
+	background-color: darkslategrey;
+}
+.nav-element {
+	background-color:slategray;
+	display: inline-block;
+	position: relative;
+	float: left;
+	padding: 1rem;
+	margin: .4rem;
+	text-align: center;
+}
+
+a {
+	color: ghostwhite;
+	list-style: none;
+	text-decoration: none;
+}
+

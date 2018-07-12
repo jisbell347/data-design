@@ -2,7 +2,7 @@
 .nav {
 	position: absolute;
 	width: 100%;
-	background-color: darkslategrey;
+	background-color: lightslategrey;
 }
 .nav-element {
 	background-color:slategray;
@@ -11,7 +11,16 @@
 	float: left;
 	padding: 1rem;
 	margin: .4rem;
+	margin-bottom: .8rem;
 	text-align: center;
+	border-radius: 30%;
+}
+/*Adds shadow to element on hover*/
+.nav-element:hover, .btn:hover {
+	box-shadow: 0 10px 5px rgba(0, 0, 0, 0.6);
+}
+.nav-element:active, .btn:active {
+	transform: translateY(.1rem);
 }
 
 a {
@@ -32,6 +41,7 @@ a {
 	text-transform: uppercase;
 }
 
+/*Sets background color and border style of button element*/
 .btn {
 	background-color: darkcyan;
 	border-radius: 50%;

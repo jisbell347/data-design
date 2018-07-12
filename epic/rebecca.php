@@ -44,8 +44,14 @@
 						<ul>
 						<li>She feels somewhat comfortable using websites but is prone to confusion if there are too many pages to click through</li>
 						</ul>
-					<li></li>
-					<li></li>
+					<li>Owns an iPhone 7 iOS 11 with a 1334x750px screen.</li>
+						<ul>
+							<li>Only likes to upgrade her phone when absolutely necessary.</li>
+						</ul>
+					<li>Also owns a Macbook Pro 13.3 inch screen laptop with an i5 processor</li>
+						<ul>
+							<li>She tends to use her laptop more than her phone for browsing the web.</li>
+						</ul>
 				</ul>
 		</div>
 	</body>

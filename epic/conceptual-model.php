@@ -28,7 +28,7 @@
 			<h4>Bookgenres</h4>
 			<ul>
 				<li>bookgenresId (Primary Key)</li>
-				<li>bookgenreBookId (Foreign Key)</li>
+				<li>bookgenresBookId (Foreign Key)</li>
 				<li>bookgenresGenreId (Foreign Key)</li>
 			</ul>
 		</div>

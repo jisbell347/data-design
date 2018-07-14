@@ -25,11 +25,11 @@
 				<li>bookPublishDate</li>
 				<li>bookTitle</li>
 			</ul>
-			<h4>Bookgenres</h4>
+			<h4>BookGenre</h4>
 			<ul>
-				<li>bookgenresId (Primary Key)</li>
-				<li>bookgenresBookId (Foreign Key)</li>
-				<li>bookgenresGenreId (Foreign Key)</li>
+				<li>bookGenreId (Primary Key)</li>
+				<li>bookGenreBookId (Foreign Key)</li>
+				<li>bookGenreGenreId (Foreign Key)</li>
 			</ul>
 		</div>
 		<div>
@@ -41,7 +41,7 @@
 		</div>
 		<div>
 			<h1>ERD</h1>
-			<img src="erd.svg" alt="Picture of ERD Diagram"/>
+			<img src="erd-diagram.svg" alt="Picture of ERD Diagram"/>
 		</div>
 		<div>
 			<button class="btn">

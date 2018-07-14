@@ -9,7 +9,7 @@
 		<div>
 			<h1>Conceptual Model</h1>
 			<hr />
-			<h3>Entities & Attributes </h3>
+			<h3>Entities & Attributes</h3>
 			<h4>Genre</h4>
 			<ul>
 				<li>genreId (Primary Key)</li>

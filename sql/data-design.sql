@@ -3,7 +3,7 @@ ALTER DATABASE jisbell1 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- Will drop the tables if currently existing.
 
-DROP TABLE IF EXISTS bookgenres;
+DROP TABLE IF EXISTS bookGenre;
 DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS genre;
 
@@ -29,7 +29,7 @@ CREATE TABLE book (
 	bookAuthor VARCHAR (64) NOT NULL,
 	bookDescription VARCHAR (500),
 	bookPages INT UNSIGNED,
-	bookPublishDate YEAR(4),
+	bookPublishDate MEDIUMINT(4) UNSIGNED,
 	bookTitle VARCHAR (128) NOT NULL,
 	-- creates the index for the foreign key.
 	INDEX(bookGenreId),
@@ -39,19 +39,19 @@ CREATE TABLE book (
 	PRIMARY KEY(bookId)
 );
 
--- creates the Bookgenres table.
-CREATE TABLE bookgenres (
+-- creates the Bookgenre table.
+CREATE TABLE bookGenre (
 	-- creates the attribute for the primary key
-	bookgenresId BINARY(16) NOT NULL,
+	bookgenreId BINARY(16) NOT NULL,
 	-- creates the foreign key attribute.
-	bookgenresBookId BINARY(16) NOT NULL,
-	bookgenresGenreId BINARY(16) NOT NULL,
+	bookgenreBookId BINARY(16) NOT NULL,
+	bookgenreGenreId BINARY(16) NOT NULL,
 	-- creates the indexes for the foreign keys.
-	INDEX(bookgenresBookId),
-	INDEX(bookgenresGenreId),
+	INDEX(bookgenreBookId),
+	INDEX(bookgenreGenreId),
 	-- creates the foreign key.
-	FOREIGN KEY(bookgenresBookId) REFERENCES book(bookId),
-	FOREIGN KEY(bookgenresGenreId) REFERENCES genre(genreId),
+	FOREIGN KEY(bookgenreBookId) REFERENCES book(bookId),
+	FOREIGN KEY(bookgenreGenreId) REFERENCES genre(genreId),
 	-- creates the primary key.
-	PRIMARY KEY (bookgenresId)
+	PRIMARY KEY (bookgenreId)
 );

@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Small Cross Section of the Goodreads site.
+ * Small Cross Section of the Goodreads site genre menu.
  *
  * This is a small example of what sites like Goodreads displays when a user clicks on the genres link and a list of
- books are displayed.
+ genre types are displayed.
  * This can easily be extended to emulate more features of Goodreads.
  *
  * @author Joseph Isbell <jisbell1@cnm.edu>
@@ -51,7 +51,7 @@ class Genre {
 		}
 
 		//Converts and stores the genre id into new variable if passes validation
-		$this->$genreId = $uuid;
+		$this->genreId = $uuid;
 	}
 
 	/**
@@ -71,4 +71,23 @@ class Genre {
 	 * @throws \RangeException if $newGenreType is > 128 characters
 	 * @throws \TypeError if $newGenreType is not a string
 	 */
+
+	public function setGenreType(string $newGenreType) : void {
+		//Verify the genre type is secure by trimming white space and filtering added html tags and special characters ASCII > 127
+		$newGenreType = trim($newGenreType);
+		$newGenreType = filter_var($newGenreType, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+		//Verify the input is not empty and throw error message if it is
+		if(empty($newGenreType) === true) {
+			throw(new \InvalidArgumentException("Genre type cannot be empty"));
+		}
+		//Verify the input will not exceed the set character limit
+		if(strlen($newGenreType) > 128) {
+			throw(new \RangeException("The genre type has exceed the character limit"));
+		}
+		//Store value once it passes validation
+		$this->genreType = $newGenreType;
+	}
 }
+/**
+ * Section for Constructor to follow
+ */

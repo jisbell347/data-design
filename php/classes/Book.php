@@ -238,4 +238,37 @@ class Book {
 		//Stores the value if passes validation
 		$this->bookPublishDate = $newBookPublishDate;
 	}
+
+	/**
+	 * Accessor method for book title
+	 *
+	 * @return string value for book title
+	 */
+	public function getBookTitle() : string {
+		return($this->bookTitle);
+	}
+
+	/**
+	 * Mutator method for book title
+	 *
+	 * @param string $newBookTitle new value for book title
+	 * @throws \InvalidArgumentException if value is empty or insecure
+	 * @throws \RangeException if value exceeds character limit
+	 * @throws \TypeError if not a string
+	 */
+	public function setBookTitle(string $newBookTitle): void {
+		//Verifies value is not empty and secure, trims whitespace and removes malicious html tags
+		$newBookTitle = trim($newBookTitle);
+		$newBookTitle = filter_var($newBookTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		//If book title is an empty string, throws an error message
+		if(empty($newBookTitle) === true) {
+			throw(new \InvalidArgumentException("Book title cannot be empty"));
+		}
+		//If character length of title exceeds 128 characters, throws an error message
+		if(strlen($newBookTitle) > 128) {
+			throw(new \RangeException("The book title has exceed the character limit"));
+		}
+		//Stores value if validation passes
+		$this->bookTitle = $newBookTitle;
+	}
 }

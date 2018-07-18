@@ -4,7 +4,7 @@
  * Small Cross Section of the Goodreads site genre menu.
  *
  * This is a small example of what sites like Goodreads displays when a user clicks on the genres link and a list of
- genre types are displayed.
+ * genre types are displayed.
  * This can easily be extended to emulate more features of Goodreads.
  *
  * @author Joseph Isbell <jisbell1@cnm.edu>

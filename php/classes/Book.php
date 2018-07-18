@@ -139,7 +139,7 @@ class Book {
 	public function setBookAuthor(string $newBookAuthor): void {
 		//verify the book author value is secure, trims white space and removes malicious html tags
 		$newBookAuthor = trim($newBookAuthor);
-		$newBookAuthor = filter_var(FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$newBookAuthor = filter_var($newBookAuthor, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		//Checks to see if value is empty and throws an error if so
 		if(empty($newBookAuthor) === true) {
 			throw(new \InvalidArgumentException("Author name cannot be left blank."));
@@ -157,4 +157,85 @@ class Book {
 	 *
 	 * @return string value of book description
 	 */
+	/**
+	 * @return string
+	 */
+	public function getBookDescription(): string {
+		return($this->bookDescription);
+	}
+
+	/**
+	 * Mutator method for book description
+	 *
+	 * @param string $newBookDescription new value for book description
+	 * @throws \RangeException if $newBookDescription is > 500 characters
+	 * @throws \TypeError if $newBookDescription is not a string
+	 */
+	//Only allows a string type value to pass into the function
+	public function setBookDescription(string $newBookDescription) : void { //Does not expect a return
+		//verify the description content is secure, trim the whitespace and remove any malicious html tags
+		$newBookDescription = trim($newBookDescription);
+		$newBookDescription = filter_var($newBookDescription, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		//Checks to see if the value exceeds 500 characters and throws an error if so
+		if(strlen($newBookDescription) > 500) {
+			throw (new \RangeException("Character limit exceeded"));
+		}
+		$this->bookDescription = $newBookDescription;
+	}
+
+	/**
+	 * Accessor method for book pages
+	 *
+	 * @return int value of book pages
+	 **/
+	public function getBookPages() : int { //Requires an integer be returned
+		return($this->bookPages);
+	}
+
+	/**
+	 * Mutator method for book pages
+	 *
+	 * @param int $newBookPages new value for book pages
+	 * @throws \InvalidArgumentException if pages is not a positive number or zero
+	 * @throws \RangeException if book pages is greater than the set character limit
+	 * @throws \TypeError if book pages is not a integer
+	 **/
+	public function setBookPages(int $newBookPages) : void {
+		//Verifies that the number of pages is greater than zero
+		if($newBookPages <= 0) {
+			throw(new \InvalidArgumentException("Number of pages must be greater than zero"));
+		}
+		//Stores the value if passes validation
+		$this->bookPages = $newBookPages;
+	}
+
+	/**
+	 * Accessor method for book publish date
+	 *
+	 * @return int value of book publish date
+	 **/
+	public function getBookPublishDate() : int { //Requires an integer be returned
+		return($this->bookPublishDate);
+	}
+
+	/**
+	 * Mutator method for book publish date
+	 *
+	 * @param int $newBookPublishDate new value for book publish date
+	 * @throws \InvalidArgumentException if publish date is not a positive number or zero
+	 * @throws \RangeException if book publish date is greater than 4 characters
+	 * @throws \TypeError if book publish date is not a integer
+	 **/
+	public function setBookPublishDate(int $newBookPublishDate) : void {
+		//Verifies that the publish date is greater than zero. Throws error message if it is
+		if($newBookPublishDate <= 0) {
+			throw(new \InvalidArgumentException("The year entered is invalid"));
+		}
+		//Throws error message if date is greater than four characters
+		if($newBookPublishDate > 4) {
+			throw (new \RangeException("The year cannot exceed four digits"));
+		}
+		//Stores the value if passes validation
+		$this->bookPublishDate = $newBookPublishDate;
+	}
 }

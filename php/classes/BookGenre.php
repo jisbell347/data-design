@@ -3,7 +3,7 @@
 * Small Cross Section of the Goodreads site book section within a genre.
 *
 * This is a small example of what sites like Goodreads displays when a user clicks on a specific book which brings them
-to that book's page. The book then lists additional genre that the book can belong to.
+to that book's page. The book then lists additional genres that the book can belong to.
 * This can easily be extended to emulate more features of Goodreads.
 *
 * @author Joseph Isbell <jisbell1@cnm.edu>

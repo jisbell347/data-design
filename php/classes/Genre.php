@@ -40,11 +40,12 @@ class Genre {
 	 * @throws \RangeException if $newGenreId is not a positive number
 	 * @throws \TypeError if $newGenreId is not a Uuid
 	 **/
+	//Passes value into function. Void does not require it return anything
 	public function setGenreId($newGenreId) : void {
 		try {
 			//Validates the Uuid and stores it to $uuid variable
 			$uuid = self::validateUuid($newGenreId);
-			//If value returns an exception, throws error message based on exception caught.
+			//If value returns an exception, throws error message based on exception caught
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -72,6 +73,7 @@ class Genre {
 	 * @throws \TypeError if $newGenreType is not a string
 	 */
 
+	// passes value into the function only if its type is a string. Void causes nothing to be expected to return
 	public function setGenreType(string $newGenreType) : void {
 		//Verify the genre type is secure by trimming white space and filtering added html tags and special characters ASCII > 127
 		$newGenreType = trim($newGenreType);

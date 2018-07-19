@@ -35,31 +35,31 @@ class Book {
 	/**
 	 * The name of the author of this Book
 	 * @var string $bookAuthor
-	 */
+	 **/
 	private $bookAuthor;
 
 	/**
 	 * A brief description of this Book
 	 * @var string $bookDescription
-	 */
+	 **/
 	private $bookDescription;
 
 	/**
 	 * The number of pages this Book
 	 * @var int unsigned $bookPages
-	 */
+	 **/
 	private $bookPages;
 
 	/**
 	 * The year this Book was published
 	 * @var int $bookPublishDate
-	 */
+	 **/
 	private $bookPublishDate;
 
 	/**
 	 * The title of this Book
 	 * @var string $bookTitle
-	 */
+	 **/
 	private $bookTitle;
 	/**
 	 * Constructor for the Book Class
@@ -96,7 +96,7 @@ class Book {
 	 * The accessor method for book id
 	 *
 	 * @return Uuid value of book id
-	 */
+	 **/
 	public function getBookId() : Uuid { //requires an Uuid is returned
 		return($this->bookId);
 	}
@@ -125,7 +125,7 @@ class Book {
 	 * accessor method for book genre id
 	 *
 	 * @return Uuid value of book genre id
-	 */
+	 **/
 	public function getBookGenreId() : Uuid {
 		return($this->bookGenreId);
 	}
@@ -155,9 +155,6 @@ class Book {
 	 *
 	 * @return string value of book author
 	 */
-	/**
-	 * @return string
-	 */
 	public function getBookAuthor(): string { //requires a string be returned
 		return($this->bookAuthor);
 	}
@@ -170,9 +167,6 @@ class Book {
 	 * @throws \RangeException if $newBookAuthor is > 64 characters
 	 * @throws \TypeError if $newBookAuthor is not a string
 	 **/
-	/**
-	 * @param string $bookAuthor
-	 */
 	public function setBookAuthor(string $newBookAuthor): void {
 		//verify the book author value is secure, trims white space and removes malicious html tags
 		$newBookAuthor = trim($newBookAuthor);
@@ -193,10 +187,7 @@ class Book {
 	 * Accessor method for the book description
 	 *
 	 * @return string value of book description
-	 */
-	/**
-	 * @return string
-	 */
+	 **/
 	public function getBookDescription(): string {
 		return($this->bookDescription);
 	}
@@ -207,7 +198,7 @@ class Book {
 	 * @param string $newBookDescription new value for book description
 	 * @throws \RangeException if $newBookDescription is > 500 characters
 	 * @throws \TypeError if $newBookDescription is not a string
-	 */
+	 **/
 	//Only allows a string type value to pass into the function
 	public function setBookDescription(string $newBookDescription) : void { //Does not expect a return
 		//verify the description content is secure, trim the whitespace and remove any malicious html tags
@@ -276,7 +267,7 @@ class Book {
 	 * Accessor method for book title
 	 *
 	 * @return string value for book title
-	 */
+	 **/
 	public function getBookTitle() : string {
 		return($this->bookTitle);
 	}
@@ -288,7 +279,7 @@ class Book {
 	 * @throws \InvalidArgumentException if value is empty or insecure
 	 * @throws \RangeException if value exceeds character limit
 	 * @throws \TypeError if not a string
-	 */
+	 **/
 	public function setBookTitle(string $newBookTitle): void {
 		//Verifies value is not empty and secure, trims whitespace and removes malicious html tags
 		$newBookTitle = trim($newBookTitle);
@@ -304,4 +295,180 @@ class Book {
 		//Stores value if validation passes
 		$this->bookTitle = $newBookTitle;
 	}
+
+	/**
+	 * inserts this Book into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) : void {
+		// create query template
+		$query = "INSERT INTO book(bookId, bookGenreId, bookAuthor, bookDescription, bookPages, bookPublishDate, bookTitle) VALUES (:bookId, :bookGenreIdm :bookAuthorm :bookDescription, :bookPages, :bookPublishDate, :bookTitle)";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the place holders in the template
+		$parameters = ["bookId" => $this->bookId->getBytes(), "bookGenreId" => $this->bookGenreId->getBytes(), "bookAuthor" => $this->bookAuthor, "bookDescription" => $this->bookDescription, "bookPages" => $this->bookPages, "bookPublishDate" => $this->bookPublishDate, "bookTitle" => $this->bookTitle];
+		$statement->execute($parameters);
+	}
+	/**
+	 * deletes this book from mySQL
+	 *
+	 * @param \PDO $pdo connection object
+	 * @throws \PDOException when mySQL errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void {
+		//creates the query template
+		$query = "DELETE FROM book WHERE bookId = :bookId";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variable to the place holder in the template
+		$parameters = ["bookId" => $this->bookId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * Updates the book in mySQL
+	 *
+	 * @param \PDO $pdo connection object
+	 * @throws \PDOException when mySQL errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+		//create query template
+		$query = "UPDATE book SET bookGenreId = :bookGenreId, bookAuthor = :bookAuthor, bookDescription = :bookDescription, bookPages = :bookPages, bookPublishDate = :bookPublishDate, bookTitle = :bookTitle WHERE bookId = :bookId";
+		$statement = $pdo->prepare($query);
+
+		//binds the members to the template
+		$parameters = ["bookId" => $this->bookId->getBytes(), "bookGenreId" => $this->bookGenreId->getBytes(), "bookAuthor" => $this->bookAuthor, "bookDescription" => $this->bookDescription, "bookPages" => $this->bookPages, "bookPublishDate" => $this->bookPublishDate, "bookTitle" => $this->bookTitle];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 *gets the Book by bookId
+	 *
+	 *@param \PDO $pdo PDO connection object
+	 *@param Uuid|string $bookId book id to search for
+	 *@return Book|null Book found or null if not found
+	 *@throws \PDOException when mySQL related errors occur
+	 *@throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public static function getBookByBookId(\PDO $pdo, $bookId) : ?Book {
+		// sanitize the bookId before searching
+		try {
+			$bookId = self::validateUuid($bookId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		//create the query template
+		$query = "SELECT bookId, bookGenreId, bookAuthor, bookDescription, bookPages, bookPublishDate, bookTitle FROM book WHERE bookId = :bookId";
+		$statement = $pdo->prepare($query);
+
+		// bind the book id to the place holder in the template
+		$parameters = ["bookId" => $bookId->getBytes()];
+		$statement->execute($parameters);
+
+		//grab the book from mySQL
+		try{
+			$book = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$book = new Book($row["bookId"], $row["bookGenreId"], $row["bookAuthor"], $row["bookDescription"], $row["bookPages"], $row["bookPublishDate"], $row["bookTitle"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($book);
+	}
+	/**
+	 * gets the Book by genre id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $bookGenreId genre id to search by
+	 * @return \SplFixedArray SplFixedArray of books found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public static function getBookByBookGenreId(\PDO $pdo, $bookGenreId) : \SplFixedArray {
+		try {
+			$bookGenreId = self::validateUuid($bookGenreId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		//create query template
+		$query = "SELECT bookId, bookGenreId, bookAuthor, bookDescription, bookPages, bookPublishDate, bookTitle FROM book WHERE bookGenreId = :bookGenreId";
+		$statement = $pdo->prepare($query);
+
+		//bind the book genre id to the placeholders in the template
+		$parameters = ["bookGenreId" => $bookGenreId->getBytes()];
+		$statement->execute($parameters);
+
+		//build an array of books
+		$books = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$book = new Book($row["bookId"], $row["bookGenreId"], $row["bookAuthor"], $row["bookDescription"], $row["bookPages"], $row["bookPublishDate"], $row["bookTitle"]);
+				$books[$books->key()] = $book;
+				$books->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0 , $exception));
+			}
+		}
+		return($books);
+	}
+	/**
+	 * gets the book by author
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $bookAuthor book author to search for
+	 * @return \SplFixedArray SplFixedArray of authors found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getBookByBookAuthor(\PDO $pdo, string $bookAuthor) : \SplFixedArray {
+		//sanitize the author before searching for it
+		$bookAuthor = trim($bookAuthor);
+		$bookAuthor = filter_var($bookAuthor, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($bookAuthor) === true) {
+			throw(new \PDOException("Book author is invalid"));
+		}
+
+		//escape any mySQL wild cards
+		$bookAuthor = str_replace("_", "\\", str_replace("%", "\\%", $bookAuthor));
+
+		//create query template
+		$query = "SELECT bookId, bookGenreId, bookAuthor, bookDescription, bookPages, bookPublishDate, bookTitle FROM book WHERE bookAuthor LIKE :bookAuthor";
+		$statement = $pdo->prepare($query);
+
+		//bind the book author to the place holder in the template
+		$bookAuthor = "%$bookAuthor%";
+		$parameters = ["bookAuthor" => $bookAuthor];
+		$statement->execute($parameters);
+
+		//build an array of authors
+		$books = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$book = new Book($row["bookId"], $row["bookGenreId"], $row["bookAuthor"], $row["bookDescription"], $row["bookPages"], $row["bookPublishDate"], $row["bookTitle"]);
+				$books[$books->key()] = $book;
+				$books->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw (new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($books);
+	}
+
+
+
 }

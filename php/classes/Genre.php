@@ -28,7 +28,7 @@ class Genre {
 	 * Constructor method for Genre class
 	 *
 	 * @param string|Uuid $newGenreId id of this genre or null if new genre
-	 * @param string $genreType string containing type of genre
+	 * @param string $newGenreType string containing type of genre
 	 * @throws \InvalidArgumentException if data types are invalid
 	 * @throws \RangeException if values are out of bounds(e.g.; strings are too long)
 	 * @throws \Exception if some other exception occurs

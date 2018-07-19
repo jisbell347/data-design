@@ -1,4 +1,10 @@
 <?php
+namespace Edu\Cnm\DataDesign;
+
+require_once ("autoload.php");
+require_once (dirname(__DIR__, 2 ) . "/vendor/autoload.php");
+
+use Ramsey\Uuid\Uuid;
 /**
 * Small Cross Section of the Goodreads site book section within a genre.
 *
@@ -11,6 +17,7 @@
 **/
 
 class BookGenre {
+	use ValidateUuid;
 	/**
 	 * id for the book genre. This is the primary key
 	 */
@@ -25,6 +32,28 @@ class BookGenre {
 	 * id for the genre id inside the book genre. This is a foreign key.
 	 */
 	private $bookGenreGenreId;
+
+	/**
+	 * Constructor for BookGenre class
+	 *
+	 * @param Uuid|string $newBookGenreId sets the id for the book genre
+	 * @param Uuid|string $newBookGenreBookId sets the id for the book within the book genre
+	 * @param Uuid|string $newBookGenreGenreId sets the id for the genre within the book genre
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if values are out of bounds (e.g; strings are too long)
+	 * @throws \Exception if some other exception occurs
+	 * @throws \TypeError if data types violate type hints
+	 */
+	public function __construct($newBookGenreId, $newBookGenreBookId, $newBookGenreGenreId) {
+		try {
+			$this->setBookGenreId($newBookGenreId);
+			$this->setBookGenreBookId($newBookGenreBookId);
+			$this->setBookGenreGenreId($newBookGenreGenreId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw (new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 
 	/**
 	 * Accessor for the book genre id

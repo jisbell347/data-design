@@ -1,5 +1,6 @@
 <?php
-
+namespace Edu\Cnm\DataDesign;
+use Ramsey\Uuid\Uuid;
 /**
  * Small Cross Section of the Goodreads site genre menu.
  *
@@ -11,7 +12,7 @@
  * @version 1.0.0
  **/
 class Genre {
-
+	use ValidateUuid;
 	/**
 	 * id for this Genre, this is the primary key
 	 * @var Uuid $genreId
@@ -23,6 +24,26 @@ class Genre {
 	 */
 	private $genreType;
 
+	/**
+	 * Constructor method for Genre class
+	 *
+	 * @param string|Uuid $newGenreId id of this genre or null if new genre
+	 * @param string $genreType string containing type of genre
+	 * @throws \InvalidArgumentException if data types are invalid
+	 * @throws \RangeException if values are out of bounds(e.g.; strings are too long)
+	 * @throws \Exception if some other exception occurs
+	 * @throws \TypeError if data types violate type hints
+	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
+	 */
+	public function __construct($newGenreId, $newGenreType) {
+		try {
+			$this->setGenreId($newGenreId);
+			$this->setGenreType($newGenreType);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 
 	/**
 	 *Accessor method for genre id
@@ -90,6 +111,3 @@ class Genre {
 		$this->genreType = $newGenreType;
 	}
 }
-/**
- * Section for Constructor to follow
- */

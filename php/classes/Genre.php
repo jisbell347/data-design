@@ -256,7 +256,25 @@ class Genre {
 	* @throws \TypeError when variables are not the correct data type
 	**/
 	public static function getAllTweets(\PDO $pdo) : \SplFixedArray {
+	// create query template
+		$query = "SELECT genreId, genreType FROM genre";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
 
+		//build an array of genres
+		$genres = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$genre = new Genre($row["genreId"], $row["genreType"]);
+				$genres[$genre->key()] = $genre;
+				$genres->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0 , $exception));
+			}
+		}
+		return($genres);
 	}
 
 }

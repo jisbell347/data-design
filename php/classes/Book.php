@@ -227,12 +227,8 @@ class Book {
 	 * @throws \TypeError if book publish date is not a integer
 	 **/
 	public function setBookPublishDate(int $newBookPublishDate) : void {
-		//Verifies that the publish date is greater than zero. Throws error message if it is
-		if($newBookPublishDate <= 0) {
-			throw(new \InvalidArgumentException("The year entered is invalid"));
-		}
 		//Throws error message if date is greater than four characters
-		if($newBookPublishDate > 4) {
+		if($newBookPublishDate < 1400 || $newBookPublishDate > 2025 ) {
 			throw (new \RangeException("The year cannot exceed four digits"));
 		}
 		//Stores the value if passes validation

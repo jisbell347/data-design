@@ -1,4 +1,11 @@
 <?php
+namespace Edu\Cnm\DataDesign;
+
+require_once ("autoload.php");
+require_once (dirname(__DIR__, 2 ) . "/vendor/autoload.php");
+
+use Ramsey\Uuid\Uuid;
+
 /**
  * Small Cross Section of the Goodreads site book section within a genre.
  *
@@ -11,7 +18,7 @@
  **/
 
 class Book {
-
+	use ValidateUuid;
 	/**
 	 *id for this Book; this is the primary key
 	 * @var Uuid $bookId
@@ -54,6 +61,36 @@ class Book {
 	 * @var string $bookTitle
 	 */
 	private $bookTitle;
+	/**
+	 * Constructor for the Book Class
+	 *
+	 * @param Uuid|string $newBookId id of this book or null if a new book
+	 * @param Uuid|string $newBookGenreId id of the genre the book is in
+	 * @param string $newBookAuthor value of the book's author
+	 * @param string $newBookDescription description of the book
+	 * @param int $newBookPages number of pages in the book
+	 * @param int $newBookPublishDate the date the book was published
+	 * @param string $newBookTitle the book's title
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if values exceed the preset bounds (e.g.; the strings have too many characters)
+	 * @throws \Exception if some other exception occurs
+	 * @throws \TypeError if data violates the type hints
+	 * @Documentation https:/php.net/manuel/en/languqge.oop5.decon.php
+	 */
+	public  function __construct($newBookId, $newBookGenreId, string $newBookAuthor, string $newBookDescription, int $newBookPages, int $newBookPublishDate, string $newBookTitle) {
+		try {
+			$this->setBookId($newBookId);
+			$this->setBookGenreId($newBookGenreId);
+			$this->setBookAuthor($newBookAuthor);
+			$this->setBookDescription($newBookDescription);
+			$this->setBookPages($newBookPages);
+			$this->setBookPublishDate($newBookPublishDate);
+			$this->setBookTitle($newBookTitle);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw (new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 
 	/**
 	 * The accessor method for book id
@@ -66,7 +103,7 @@ class Book {
 	/**
 	 *The mutator method for the book id
 	 *
-	 * @params Uuid/string $newBookId new value of book id
+	 * @param Uuid/string $newBookId new value of book id
 	 * @throws \RangeException if $newBookId is not positive
 	 * @throws \TypeError if $newBookId is not an Uuid
 	 **/

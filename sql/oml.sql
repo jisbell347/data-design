@@ -13,13 +13,13 @@ INSERT INTO bookGenre(bookgenreId, bookgenreBookId, bookgenreGenreId) VALUES (UN
 UPDATE bookGenre SET bookgenreGenreId = UNHEX("8c38a40ddec34a469b8708f059ae6df6");
 
  SELECT *
- FROM genre, book, bookGenre;
+ FROM genre;
 
  DELETE FROM bookGenre WHERE bookgenreId = UNHEX("ed7e623dea144cc09cd8152f39daa948");
 
  DELETE FROM book WHERE bookId = UNHEX("c6b33f751c9e413a90b8ae9f077756e3");
 
- DELETE FROM genre WHERE genreId = UNHEX("8c38a40ddec34a469b8708f059ae6df6");
+ DELETE FROM genre WHERE genreId = UNHEX("ea579028c78144c9a4ff13d8967f929d");
 
 
 

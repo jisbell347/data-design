@@ -17,3 +17,12 @@ INSERT INTO book(bookId, bookGenreId, bookAuthor, bookDescription, bookPages, bo
  FROM book;
 
  DELETE FROM book WHERE bookId = UNHEX("c6b33f751c9e413a90b8ae9f077756e3");
+
+ INSERT INTO bookGenre(bookgenreId, bookgenreBookId, bookgenreGenreId) VALUES (UNHEX("ed7e623dea144cc09cd8152f39daa948"), unhex("0225722944b54d56be0929d0fd82dc03"), UNHEX("c6b33f751c9e413a90b8ae9f077756e3"));
+
+ UPDATE bookGenre SET bookgenreGenreId = UNHEX("8c38a40ddec34a469b8708f059ae6df6");
+
+SELECT *
+ FROM bookGenre;
+
+DELETE FROM bookGenre WHERE bookgenreId = UNHEX("ed7e623dea144cc09cd8152f39daa948");

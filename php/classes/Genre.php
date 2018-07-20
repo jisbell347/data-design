@@ -229,7 +229,7 @@ class Genre {
 		$statement = $pdo->prepare($query);
 
 		// bind the members to the template place holder
-		$genreType = "%$genreType%";
+		$genreType = "%$genreType%"; // surrounded by % on either side % means "contains"
 		$parameters = ["genreType" => $genreType];
 		$statement->execute($parameters);
 

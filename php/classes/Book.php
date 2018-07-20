@@ -468,7 +468,78 @@ class Book {
 		}
 		return($books);
 	}
+	/**
+	 * gets the book by title
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $bookTitle book title to search for
+	 * @return \SplFixedArray SplFixedArray of titles found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getBookByBookTitle(\PDO $pdo, $bookTitle) : \SplFixedArray {
+		// sanitize the title before searching for it
+		$bookTitle = trim($bookTitle);
+		$bookTitle = filter_var($bookTitle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($bookTitler) === true) {
+			throw(new \PDOException("Book title is invalid"));
+		}
 
+		//escape any mySQL wild cards
+		$bookTitle = str_replace("_", "\\", str_replace("%", "\\%", $bookTitle));
 
+		//create query template
+		$query = "SELECT bookId, bookGenreId, bookAuthor, bookDescription, bookPages, bookPublishDate, bookTitle FROM book WHERE bookTitle LIKE :bookTitle";
+		$statement = $pdo->prepare($query);
+
+		// Bind the book title to the place holder in the template
+		$bookTitle = "%$bookTitle%";
+		$parameters = ["bookTitle" => $bookTitle];
+		$statement->execute($parameters);
+
+		// build an array of book titles
+		$books = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\POD::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$book = new Book($row["bookId"], $row["bookGenreId"], $row["bookAuthor"], $row["bookDescription"], $row["bookPages"], $row["bookPublishDate"], $row["bookTitle"]);
+				$books[$books->key()] = $book;
+				$books->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($books);
+	}
+/**
+ * gets all Books
+ *
+ * @param \PDO $pdo PDO connection object
+ * @return \SplFixedArray of Books found or null if not found
+ * @throws \PDOException when mySQL related errors occur
+ * @throws \TypeError when variables are not the correct data type
+ **/
+public static function getAllBooks(\PDO $pdo) : \SplFixedArray {
+	//create query template
+	$query = "SELECT bookId, bookGenreId, bookAuthor, bookDescription, bookPages, bookPublishDate, bookTitle FROM book";
+	$statement = $pdo->prepare($query);
+	$statement->execute();
+
+	//build an array of books
+	$books = new \SplFixedArray($statement->rowCount());
+	$statement->setFetchMode(\POD::FETCH_ASSOC);
+	while(($row = $statement->fetch()) !== false) {
+		try {
+			$book = new Book($row["bookId"], $row["bookGenreId"], $row["bookAuthor"], $row["bookDescription"], $row["bookPages"], $row["bookPublishDate"], $row["bookTitle"]);
+			$books[$books->key()] = $book;
+			$books->next();
+		} catch(\Exception $exception) {
+			//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($books);
+	}
 
 }

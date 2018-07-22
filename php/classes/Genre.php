@@ -213,7 +213,7 @@ class Genre {
 	 * @throws \PDOException when mySQL errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 */
-	public static function getGenreByGenreType(\POO $pdo, string $genreType) : \SplFixedArray {
+	public static function getGenreByGenreType(\PDO $pdo, string $genreType) : \SplFixedArray {
 		//sanitize the type before searching
 		$genreType = trim($genreType);
 		$genreType = filter_var($genreType, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);

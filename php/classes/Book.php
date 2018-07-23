@@ -305,7 +305,7 @@ class Book {
 	 **/
 	public function insert(\PDO $pdo) : void {
 		// create query template
-		$query = "INSERT INTO book(bookId, bookGenreId, bookAuthor, bookDescription, bookPages, bookPublishDate, bookTitle) VALUES (:bookId, :bookGenreIdm :bookAuthorm :bookDescription, :bookPages, :bookPublishDate, :bookTitle)";
+		$query = "INSERT INTO book(bookId, bookGenreId, bookAuthor, bookDescription, bookPages, bookPublishDate, bookTitle) VALUES (:bookId, :bookGenreId, :bookAuthor, :bookDescription, :bookPages, :bookPublishDate, :bookTitle)";
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place holders in the template
@@ -499,7 +499,7 @@ class Book {
 
 		// build an array of book titles
 		$books = new \SplFixedArray($statement->rowCount());
-		$statement->setFetchMode(\POD::FETCH_ASSOC);
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$book = new Book($row["bookId"], $row["bookGenreId"], $row["bookAuthor"], $row["bookDescription"], $row["bookPages"], $row["bookPublishDate"], $row["bookTitle"]);
@@ -528,7 +528,7 @@ public static function getAllBooks(\PDO $pdo) : \SplFixedArray {
 
 	//build an array of books
 	$books = new \SplFixedArray($statement->rowCount());
-	$statement->setFetchMode(\POD::FETCH_ASSOC);
+	$statement->setFetchMode(\PDO::FETCH_ASSOC);
 	while(($row = $statement->fetch()) !== false) {
 		try {
 			$book = new Book($row["bookId"], $row["bookGenreId"], $row["bookAuthor"], $row["bookDescription"], $row["bookPages"], $row["bookPublishDate"], $row["bookTitle"]);

@@ -165,7 +165,7 @@ class BookGenre {
 	 **/
 	public function delete(\PDO $pdo) : void {
 		// create query template
-		$query = "DELETE FROM bookGenre WHERE bookgenreId = :bookgenreId";
+		$query = "DELETE FROM bookGenre WHERE bookGenreId = :bookGenreId";
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place holder in the template
@@ -208,7 +208,7 @@ class BookGenre {
 		}
 
 		//create query template
-		$query = "SELECT bookGenreId, bookGenreBookId, bookGenreGenreId FROM bookGenre WHERE bookgenreId = : bookgenreId";
+		$query = "SELECT bookGenreId, bookGenreBookId, bookGenreGenreId FROM bookGenre WHERE bookGenreId = : bookGenreId";
 		$statement = $pdo->prepare($query);
 
 		//bind the bookgenre id to the place holder in the template
@@ -247,7 +247,7 @@ class BookGenre {
 		}
 
 		//create query template
-		$query = "SELECT bookGenreId, bookGenreBookId, bookGenreGenreId FROM bookGenre WHERE bookgenreBookId = : bookgenreBookId";
+		$query = "SELECT bookGenreId, bookGenreBookId, bookGenreGenreId FROM bookGenre WHERE bookGenreBookId = : bookGenreBookId";
 		$statement = $pdo->prepare($query);
 
 		//bind the bookgenre id to the place holder in the template
@@ -287,7 +287,7 @@ class BookGenre {
 		}
 
 		//create query template
-		$query = "SELECT bookGenreId, bookGenreBookId, bookGenreGenreId FROM bookGenre WHERE bookgenreGenreId = :bookgenreGenreId";
+		$query = "SELECT bookGenreId, bookGenreBookId, bookGenreGenreId FROM bookGenre WHERE bookGenreGenreId = :bookGenreGenreId";
 		$statement = $pdo->prepare($query);
 
 		//bind the bookgenre id to the place holder in the template

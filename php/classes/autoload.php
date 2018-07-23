@@ -22,7 +22,7 @@ spl_autoload_register(function($class) {
 	$len = strlen($prefix);
 	if (strncmp($prefix, $class, $len) !== 0) {
 	// no, move to the next registered autoloader
-	return;
+		return;
 	}
 
 	// get the relative class name
@@ -35,6 +35,6 @@ spl_autoload_register(function($class) {
 
 	// if the file exists, require it
 	if(file_exists($file)) {
-	require_once($file);
+		require_once($file);
 	}
 });

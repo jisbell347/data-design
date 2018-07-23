@@ -148,7 +148,7 @@ class BookGenre {
 	 **/
 	public function insert(\PDO $pdo) : void {
 		//create query template
-		$query = "INSERT INTO bookGenre(bookgenreId, bookgenreBookId, bookgenreGenreId) VALUES(:bookgenreId, :bookgenreBookId, :bookgenreGenreId)";
+		$query = "INSERT INTO bookGenre(bookGenreId, bookGenreBookId, bookGenreGenreId) VALUES(:bookGenreId, :bookGenreBookId, :bookGenreGenreId)";
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place holders in the template
@@ -182,7 +182,7 @@ class BookGenre {
 	 **/
 	public function update(\PDO $pdo) : void {
 		// create query template
-		$query = "UPDATE bookGenre SET bookgenreBookId = :bookgenreBookId, bookgenreGenreId = :bookgenreGenreId WHERE bookgenreId = :bookgenreId";
+		$query = "UPDATE bookGenre SET bookGenreBookId = :bookGenreBookId, bookGenreGenreId = :bookGenreGenreId WHERE bookGenreId = :bookGenreId";
 		$statement = $pdo->prepare($query);
 
 		//binds variables to the place holders in the template

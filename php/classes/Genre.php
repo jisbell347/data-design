@@ -2,7 +2,7 @@
 namespace Jisbell347\DataDesign; //Githubusername\ProjectName
 
 require_once ('autoload.php'); // autoload.php file located in the root directory where your Class files are stored
-require_once (dirname(__DIR__, 1) . "/vendor/autoload.php");
+require_once (dirname(__DIR__, 2) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 /**

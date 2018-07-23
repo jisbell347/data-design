@@ -267,7 +267,7 @@ class Genre {
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$genre = new Genre($row["genreId"], $row["genreType"]);
-				$genres[$genre->key()] = $genre;
+				$genres[$genres->key()] = $genre;
 				$genres->next();
 			} catch(\Exception $exception) {
 				//if the row couldn't be converted, rethrow it
